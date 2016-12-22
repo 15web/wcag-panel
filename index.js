@@ -2,13 +2,15 @@ var WCAGPanel = (function () {
 
     /**
      * WCAGPanel
+     * На этапе инициализации определяем, какие переключатели используются в панели
+     * Затем для каждого переключателя навешиваем одинаковый event клик для изменения активного класса и выполнения определенной функции исходя из data-action
      * @constructor
      * @param {object} element - HTML element
      * @param {object} options
      */
 
-    var WCAGPanel = function (element, options) {
-        this.controlPanel = document.getElementById('wcag-panel');
+    var WCAGPanel = function (panel) {
+        this.controlPanel = panel;
         this.dropdownBtn = document.getElementById('dropdownBtn');
         this.dropdownBtnClose = document.getElementById('dropdownBtnClose');
         this.dropdown = document.getElementById('dropdownMenu');
@@ -29,24 +31,29 @@ var WCAGPanel = (function () {
     };
 
     WCAGPanel.prototype.handleSwitcherClick = function () {
-
+        //клик по группе переключателей
         for (var i = 0; i < this.switchers.length; i++) {
             this.switchers[i].addEventListener("click", this.handleSwitcherItemClick.bind(this), false);
         }
 
-    }
+    };
 
     WCAGPanel.prototype.handleSwitcherItemClick = function (e) {
-        //клик по дочернему элементу
-        if (e.target !== e.currentTarget) {
-            var siblings = Array.prototype.filter.call(e.target.parentNode.children, function (child) {
-                return child !== e.target;
+        var target = e.target;
+        //клик по элементу переключателя
+        if (target !== e.currentTarget) {
+            var siblings = Array.prototype.filter.call(target.parentNode.children, function (child) {
+                return child !== target;
             });
             for (var i = 0; i < siblings.length; i++) {
                 siblings[i].classList.remove(this.constants.switcherItemSelectorActive);
             }
-            e.target.classList.toggle(this.constants.switcherItemSelectorActive);
-            console.log(e.target);
+            target.classList.toggle(this.constants.switcherItemSelectorActive);
+
+            var action = target.getAttribute('data-action');
+            if (action) {
+                this[action]();
+            }
         }
     };
 
@@ -117,10 +124,43 @@ var WCAGPanel = (function () {
             return this.isChildOf(child.parentNode, parent);
         }
     };
+    
+    WCAGPanel.prototype.largeFontSize = function () {
+        console.log('большой шрифт');
+    };
+
+    WCAGPanel.prototype.normalFontSize = function () {
+        console.log('нормальный шрифт');
+    };
+
+    WCAGPanel.prototype.smallFontSize = function () {
+        console.log('маленький шрифт');
+    };
+
+    WCAGPanel.prototype.showImages = function () {
+        console.log('Показать картинки');
+    };
+
+    WCAGPanel.prototype.hideImages = function () {
+        console.log('Скрыть картинки');
+    };
+
+    WCAGPanel.prototype.setWhiteColor = function () {
+        console.log('Белый цвет сайта');
+    };
+
+    WCAGPanel.prototype.setBlackColor = function () {
+        console.log('Черный цвет сайта');
+    };
+
+    WCAGPanel.prototype.setBlueColor = function () {
+        console.log('Голубой цвет сайта');
+    };
 
     return WCAGPanel;
 })();
 
-if (document.getElementById('wcag-panel')) {
-    new WCAGPanel();
+var panel = document.getElementById('wcag-panel')
+if (panel) {
+    new WCAGPanel(panel);
 }
