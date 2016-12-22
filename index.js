@@ -60,7 +60,7 @@ var WCAGPanel = (function () {
     WCAGPanel.prototype.handleOutsideDropdownClick = function () {
         var self = this;
         document.onclick = function (e) {
-            if (e.target != self.dropdownBtn && !self.isChildOf(e.target, self.dropdown)) {
+            if (e.target != self.dropdownBtn && !self.isChildOf(e.target, self.controlPanel)) {
                 self.closeDropdown();
             }
 
