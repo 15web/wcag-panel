@@ -4,6 +4,7 @@ var WCAGPanel = (function () {
      * WCAGPanel
      * На этапе инициализации определяем, какие переключатели используются в панели
      * Затем для каждого переключателя навешиваем одинаковый event клик для изменения активного класса и выполнения определенной функции исходя из data-action
+     * Действия записываются в localStorage
      * @constructor
      * @param {object} element - HTML element
      * @param {object} options
@@ -30,7 +31,6 @@ var WCAGPanel = (function () {
         this.handleDropdown();
         this.handleSwitcherClick();
 
-        this.setLocalStorageItem('color', 'black');
         console.log(this.getLocalStorage())
     };
 
@@ -134,44 +134,57 @@ var WCAGPanel = (function () {
         if (state) {
             return JSON.parse(state);
         }
-        return {};
+        return {
+            "fontSize" : "normal",
+            "showImages" : "true",
+            "bgcolor" : "white"
+        };
     };
 
     WCAGPanel.prototype.setLocalStorageItem = function (name,value) {
         var state = this.getLocalStorage();
         state[name] = value;
         localStorage[this.storageKey] = JSON.stringify(state);
+        console.log(this.getLocalStorage())
     };
     
     WCAGPanel.prototype.largeFontSize = function () {
+        this.setLocalStorageItem('fontSize', 'large');
         console.log('большой шрифт');
     };
 
     WCAGPanel.prototype.normalFontSize = function () {
+        this.setLocalStorageItem('fontSize', 'normal');
         console.log('нормальный шрифт');
     };
 
     WCAGPanel.prototype.smallFontSize = function () {
+        this.setLocalStorageItem('fontSize', 'small');
         console.log('маленький шрифт');
     };
 
     WCAGPanel.prototype.showImages = function () {
+        this.setLocalStorageItem('showImages', 'true');
         console.log('Показать картинки');
     };
 
     WCAGPanel.prototype.hideImages = function () {
+        this.setLocalStorageItem('showImages', 'false');
         console.log('Скрыть картинки');
     };
 
     WCAGPanel.prototype.setWhiteColor = function () {
+        this.setLocalStorageItem('bgcolor', 'white');
         console.log('Белый цвет сайта');
     };
 
     WCAGPanel.prototype.setBlackColor = function () {
+        this.setLocalStorageItem('bgcolor', 'black');
         console.log('Черный цвет сайта');
     };
 
     WCAGPanel.prototype.setBlueColor = function () {
+        this.setLocalStorageItem('bgcolor', 'blue');
         console.log('Голубой цвет сайта');
     };
 
