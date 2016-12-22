@@ -10,6 +10,7 @@ var WCAGPanel = (function () {
      */
 
     var WCAGPanel = function (panel) {
+        this.storageKey = 'wcag-panel';
         this.controlPanel = panel;
         this.dropdownBtn = document.getElementById('dropdownBtn');
         this.dropdownBtnClose = document.getElementById('dropdownBtnClose');
@@ -28,6 +29,9 @@ var WCAGPanel = (function () {
     WCAGPanel.prototype.init = function () {
         this.handleDropdown();
         this.handleSwitcherClick();
+
+        this.setLocalStorageItem('color', 'black');
+        console.log(this.getLocalStorage())
     };
 
     WCAGPanel.prototype.handleSwitcherClick = function () {
@@ -124,6 +128,20 @@ var WCAGPanel = (function () {
             return this.isChildOf(child.parentNode, parent);
         }
     };
+
+    WCAGPanel.prototype.getLocalStorage = function () {
+        var state = localStorage.getItem(this.storageKey);
+        if (state) {
+            return JSON.parse(state);
+        }
+        return {};
+    };
+
+    WCAGPanel.prototype.setLocalStorageItem = function (name,value) {
+        var state = this.getLocalStorage();
+        state[name] = value;
+        localStorage[this.storageKey] = JSON.stringify(state);
+    };
     
     WCAGPanel.prototype.largeFontSize = function () {
         console.log('большой шрифт');
@@ -164,3 +182,4 @@ var panel = document.getElementById('wcag-panel')
 if (panel) {
     new WCAGPanel(panel);
 }
+
