@@ -13,9 +13,9 @@ var WCAGPanel = (function () {
     var WCAGPanel = function (panel) {
         this.storageKey = 'wcag-panel';
         this.controlPanel = panel;
-        this.dropdownBtn = document.getElementById('dropdownBtn');
-        this.dropdownBtnClose = document.getElementById('dropdownBtnClose');
-        this.dropdown = document.getElementById('dropdownMenu');
+        this.dropdownBtn = document.getElementById('wcagDropdownBtn');
+        this.dropdownBtnClose = document.getElementById('wcagDropdownBtnClose');
+        this.dropdown = document.getElementById('wcagDropdownMenu');
         this.switchers = document.getElementsByClassName('js-wcag-panel-switcher');
 
         this.constants = {
