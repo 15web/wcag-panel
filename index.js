@@ -10,6 +10,7 @@ var WCAGPanel = (function () {
     var WCAGPanel = function (element, options) {
         this.controlPanel = document.getElementById('wcag-panel');
         this.dropdownBtn = document.getElementById('dropdownBtn');
+        this.dropdownBtnClose = document.getElementById('dropdownBtnClose');
         this.dropdown = document.getElementById('dropdownMenu');
         this.switchers = document.getElementsByClassName('js-wcag-panel-switcher');
 
@@ -52,6 +53,7 @@ var WCAGPanel = (function () {
     WCAGPanel.prototype.handleDropdown = function () {
         this.setDefaultDropdown();
         this.handleDropdownBtnClick();
+        this.handleDropdownCloseBtnClick();
         this.handleOutsideDropdownClick();
     };
 
@@ -66,6 +68,13 @@ var WCAGPanel = (function () {
     };
 
     WCAGPanel.prototype.handleDropdownBtnClick = function () {
+        var self = this;
+        this.dropdownBtnClose.addEventListener('click', function () {
+                self.closeDropdown();
+        });
+    };
+
+    WCAGPanel.prototype.handleDropdownCloseBtnClick = function () {
         var self = this;
         this.dropdownBtn.addEventListener('click', function (e) {
             e.preventDefault();
