@@ -2,64 +2,23 @@ var WCAGPanel = (function () {
 
     /**
      * WCAGPanel
-     * На этапе инициализации определяем, какие переключатели используются в панели
-     * Затем для каждого переключателя навешиваем одинаковый event клик для изменения активного класса и выполнения определенной функции исходя из data-action
-     * Действия записываются в localStorage
+     * Обрабатывает клик по кнопке "Настройки" и открывает дропдаун
      * @constructor
-     * @param {object} element - HTML element
-     * @param {object} options
      */
 
-    var WCAGPanel = function (panel) {
-        this.storageKey = 'wcag-panel';
-        this.controlPanel = panel;
+    var WCAGPanel = function () {
+        this.controlPanel = document.getElementById('wcag-panel');
         this.dropdownBtn = document.getElementById('wcagDropdownBtn');
         this.dropdownBtnClose = document.getElementById('wcagDropdownBtnClose');
         this.dropdown = document.getElementById('wcagDropdownMenu');
-        this.switchers = document.getElementsByClassName('js-wcag-panel-switcher');
-
-        this.constants = {
-            switcherSelector: 'js-wcag-panel-switcher',
-            switcherItemSelector: 'js-wcag-panel-switcher-item',
-            switcherItemSelectorActive: 'js-wcag-panel-switcher-item-active'
-        };
 
         this.init();
     };
 
     WCAGPanel.prototype.init = function () {
         this.handleDropdown();
-        this.handleSwitcherClick();
-
-        console.log(this.getLocalStorage())
     };
 
-    WCAGPanel.prototype.handleSwitcherClick = function () {
-        //клик по группе переключателей
-        for (var i = 0; i < this.switchers.length; i++) {
-            this.switchers[i].addEventListener("click", this.handleSwitcherItemClick.bind(this), false);
-        }
-
-    };
-
-    WCAGPanel.prototype.handleSwitcherItemClick = function (e) {
-        var target = e.target;
-        //клик по элементу переключателя
-        if (target !== e.currentTarget) {
-            var siblings = Array.prototype.filter.call(target.parentNode.children, function (child) {
-                return child !== target;
-            });
-            for (var i = 0; i < siblings.length; i++) {
-                siblings[i].classList.remove(this.constants.switcherItemSelectorActive);
-            }
-            target.classList.toggle(this.constants.switcherItemSelectorActive);
-
-            var action = target.getAttribute('data-action');
-            if (action) {
-                this[action]();
-            }
-        }
-    };
 
     WCAGPanel.prototype.handleDropdown = function () {
         this.setDefaultDropdown();
@@ -129,70 +88,9 @@ var WCAGPanel = (function () {
         }
     };
 
-    WCAGPanel.prototype.getLocalStorage = function () {
-        var state = localStorage.getItem(this.storageKey);
-        if (state) {
-            return JSON.parse(state);
-        }
-        return {
-            "fontSize" : "normal",
-            "showImages" : "true",
-            "bgcolor" : "white"
-        };
-    };
-
-    WCAGPanel.prototype.setLocalStorageItem = function (name,value) {
-        var state = this.getLocalStorage();
-        state[name] = value;
-        localStorage[this.storageKey] = JSON.stringify(state);
-        console.log(this.getLocalStorage())
-    };
-    
-    WCAGPanel.prototype.largeFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'large');
-        console.log('большой шрифт');
-    };
-
-    WCAGPanel.prototype.normalFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'normal');
-        console.log('нормальный шрифт');
-    };
-
-    WCAGPanel.prototype.smallFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'small');
-        console.log('маленький шрифт');
-    };
-
-    WCAGPanel.prototype.showImages = function () {
-        this.setLocalStorageItem('showImages', 'true');
-        console.log('Показать картинки');
-    };
-
-    WCAGPanel.prototype.hideImages = function () {
-        this.setLocalStorageItem('showImages', 'false');
-        console.log('Скрыть картинки');
-    };
-
-    WCAGPanel.prototype.setWhiteColor = function () {
-        this.setLocalStorageItem('bgcolor', 'white');
-        console.log('Белый цвет сайта');
-    };
-
-    WCAGPanel.prototype.setBlackColor = function () {
-        this.setLocalStorageItem('bgcolor', 'black');
-        console.log('Черный цвет сайта');
-    };
-
-    WCAGPanel.prototype.setBlueColor = function () {
-        this.setLocalStorageItem('bgcolor', 'blue');
-        console.log('Голубой цвет сайта');
-    };
-
     return WCAGPanel;
 })();
 
-var panel = document.getElementById('wcag-panel')
-if (panel) {
-    new WCAGPanel(panel);
-}
+    new WCAGPanel();
+
 
