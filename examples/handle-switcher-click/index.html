@@ -4,9 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Title</title>
-    <link rel="stylesheet" href="../src/index.css">
-    <link rel="stylesheet" href="../src/responsive.css">
-    <script src="../src/index.js"></script>
+    <link rel="stylesheet" href="../../src/index.css">
+    <link rel="stylesheet" href="../../src/responsive.css">
 </head>
 <body>
 
@@ -15,17 +14,20 @@
     <div class="wcag-panel__wrapper">
         <div class="wcag-panel__col">
             <div class="wcag-panel__switcher-label">Размер шрифта:</div>
-            <div class="wcag-panel__switcher wcag-panel__switcher_responsive">
+            <div class="js-wcag-panel-switcher wcag-panel__switcher wcag-panel__switcher_responsive">
                 <button class="wcag-panel__switcher-btn"
-                        aria-label="маленький размер шрифта">
+                        aria-label="маленький размер шрифта"
+                        data-action="smallFontSize">
                     Маленький
                 </button>
-                <button class="wcag-panel__switcher-btn"
+                <button class="js-wcag-panel-switcher-item wcag-panel__switcher-btn"
+                        data-action="normalFontSize"
                         aria-label="средний размер шрифта">
                     Средний
                 </button>
-                <button class="wcag-panel__switcher-btn"
-                        aria-label="большой размер шрифта">
+                <button class="js-wcag-panel-switcher-item wcag-panel__switcher-btn"
+                        aria-label="большой размер шрифта"
+                        data-action="largeFontSize">
                     Большой
                 </button>
             </div>
@@ -33,12 +35,14 @@
         </div>
         <div class="wcag-panel__col">
             <div class="wcag-panel__switcher-label">Изображения:</div>
-            <div class="wcag-panel__switcher wcag-panel__switcher_img">
-                <button class="wcag-panel__switcher-btn wcag-panel__switcher-btn_img wcag-panel__switcher-btn_img-on"
+            <div class="js-wcag-panel-switcher wcag-panel__switcher wcag-panel__switcher_img">
+                <button class="js-wcag-panel-switcher-item wcag-panel__switcher-btn wcag-panel__switcher-btn_img wcag-panel__switcher-btn_img-on"
+                        data-action="showImages"
                         aria-label="показать изображения">
                     Вкл
                 </button>
-                <button class="wcag-panel__switcher-btn wcag-panel__switcher-btn_img wcag-panel__switcher-btn_img-off"
+                <button class="js-wcag-panel-switcher-item wcag-panel__switcher-btn wcag-panel__switcher-btn_img wcag-panel__switcher-btn_img-off"
+                        data-action="hideImages"
                         aria-label="скрыть изображения">
                     Выкл
                 </button>
@@ -46,17 +50,20 @@
         </div>
         <div class="wcag-panel__col">
             <div class="wcag-panel__switcher-label">Цвет:</div>
-            <div class="wcag-panel__switcher wcag-panel__switcher_color">
-                <button class="wcag-panel__flag-button flag-button flag-button_white flag-button_active"
-                        aria-label="Белый фон с черным шрифтом">
+            <div class="js-wcag-panel-switcher wcag-panel__switcher wcag-panel__switcher_color">
+                <button class="js-wcag-panel-switcher-item js-wcag-panel-switcher-item-active wcag-panel__flag-button flag-button flag-button_white flag-button_active"
+                        aria-label="Белый фон с черным шрифтом"
+                        data-action="setWhiteColor">
                     Б
                 </button>
-                <button class="wcag-panel__flag-button flag-button flag-button_black"
-                        aria-label="Черный фон с белым шрифтом">
+                <button class="js-wcag-panel-switcher-item wcag-panel__flag-button flag-button flag-button_black"
+                        aria-label="Черный фон с белым шрифтом"
+                        data-action="setBlackColor">
                     Ч
                 </button>
-                <button class="wcag-panel__flag-button flag-button flag-button_blue"
-                        aria-label="Голубой цвет сайта с черным шрифтом">
+                <button class="js-wcag-panel-switcher-item wcag-panel__flag-button flag-button flag-button_blue"
+                        aria-label="Голубой цвет сайта с черным шрифтом"
+                        data-action="setBlueColor">
                     Г
                 </button>
             </div>
@@ -127,9 +134,10 @@
 
 </div>
 
-<script src="../src/index.js"></script>
+<script src="../../src/index.js"></script>
+<script src="handleSwitcherClick.js"></script>
 <script>
-    new WCAGPanel();
+    new WCAGPanelWithHandlers();
 </script>
 </body>
 </html>
