@@ -10,7 +10,7 @@
 * [Пример](http://15web.github.io/web-accessibility/docs/wcag-panel/)
 * [Быстрый старт](https://github.com/15web/wcag-panel#installing)
 
-## Installing
+## Установка
 
 Клонируйте репозиторий и подлючите скрипты и стили из папки /src
 
@@ -152,5 +152,7 @@ CSS:
 
 </div>
 ```
+
+## Пример озвучки скрин-ридером
 
 
