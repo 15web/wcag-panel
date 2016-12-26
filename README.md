@@ -8,8 +8,8 @@
 ## Содержание
 
 * [Пример](http://15web.github.io/web-accessibility/docs/wcag-panel/)
-* [Быстрый старт](https://github.com/15web/wcag-panel#installing)
-* [Пример озвучки скрин-ридером](https://github.com/15web/wcag-panel#installing)
+* [Быстрый старт](https://github.com/15web/wcag-panel#Установка)
+* [Пример озвучки скрин-ридером](https://github.com/15web/wcag-panel/#Пример-озвучки-скрин-ридером)
 
 ## Установка
 
