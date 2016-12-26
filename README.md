@@ -8,7 +8,7 @@
 ## Содержание
 
 * [Пример](http://15web.github.io/web-accessibility/docs/wcag-panel/)
-* [Быстрый старт](https://github.com/15web/wcag-panel#Installing)
+* [Быстрый старт](https://github.com/15web/wcag-panel#installing)
 
 ## Installing
 
