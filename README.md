@@ -17,19 +17,19 @@
 
 Javascript :
 ```html
-<script src="index.js"></script>
+<script src="wcag-panel.js"></script>
 ```
 
 CSS:
 
 ```html
-<link rel="stylesheet" href="index.css">
+<link rel="stylesheet" href="wcag-panel.css">
 ```
 
 Также вы можете подключить стили для адаптивности
 
 ```html
-<link rel="stylesheet" href="responsive.css">
+<link rel="stylesheet" href="wcag-panel-responsive.css">
 ```
 
 Скопируйте верстку из /demo/index.html :
