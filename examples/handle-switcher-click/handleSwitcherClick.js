@@ -5,9 +5,10 @@ var WCAGPanelWithHandlers = (function () {
         this.constants = {
             switcherSelector: 'js-wcag-panel-switcher',
             switcherItemSelector: 'js-wcag-panel-switcher-item',
-            switcherItemSelectorActive: 'js-wcag-panel-switcher-item-active'
+            switcherItemSelectorActive: 'active'
         };
         this.storageKey = 'wcag-panel';
+        this.document = document.documentElement;
 
         WCAGPanel.apply(this);
     };
@@ -18,6 +19,13 @@ var WCAGPanelWithHandlers = (function () {
     WCAGPanelWithHandlers.prototype.init = function () {
         WCAGPanel.prototype.init.apply(this, arguments);
         this.handleSwitcherClick();
+        this.setDefaultDataAttrs();
+    };
+
+    WCAGPanelWithHandlers.prototype.setDefaultDataAttrs = function () {
+        var storage = this.getLocalStorage();
+        localStorage[this.storageKey] = JSON.stringify(storage);
+        this.updateDataAttrs(storage);
     };
 
     WCAGPanelWithHandlers.prototype.handleSwitcherClick = function () {
@@ -52,56 +60,57 @@ var WCAGPanelWithHandlers = (function () {
             return JSON.parse(state);
         }
         return {
-            "fontSize" : "normal",
-            "showImages" : "true",
-            "bgcolor" : "white"
+            "fontsize": "normal",
+            "images": "on",
+            "color": "white"
         };
     };
 
-    WCAGPanelWithHandlers.prototype.setLocalStorageItem = function (name,value) {
+    WCAGPanelWithHandlers.prototype.setLocalStorageItem = function (name, value) {
         var state = this.getLocalStorage();
         state[name] = value;
         localStorage[this.storageKey] = JSON.stringify(state);
+        this.updateDataAttrs(state);
+    };
+
+    WCAGPanelWithHandlers.prototype.updateDataAttrs = function (storage) {
+        for (var i = 0; i < Object.keys(storage).length; i++) {
+            var key = Object.keys(storage)[i];
+            var value = storage[key];
+            this.document.dataset[key] = value;
+        }
     };
 
     WCAGPanelWithHandlers.prototype.largeFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'large');
-        console.log('большой шрифт');
+        this.setLocalStorageItem('fontsize', 'large');
     };
 
     WCAGPanelWithHandlers.prototype.normalFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'normal');
-        console.log('нормальный шрифт');
+        this.setLocalStorageItem('fontsize', 'normal');
     };
 
     WCAGPanelWithHandlers.prototype.smallFontSize = function () {
-        this.setLocalStorageItem('fontSize', 'small');
-        console.log('маленький шрифт');
+        this.setLocalStorageItem('fontsize', 'small');
     };
 
     WCAGPanelWithHandlers.prototype.showImages = function () {
-        this.setLocalStorageItem('showImages', 'true');
-        console.log('Показать картинки');
+        this.setLocalStorageItem('image', 'on');
     };
 
     WCAGPanelWithHandlers.prototype.hideImages = function () {
-        this.setLocalStorageItem('showImages', 'false');
-        console.log('Скрыть картинки');
+        this.setLocalStorageItem('image', 'off');
     };
 
     WCAGPanelWithHandlers.prototype.setWhiteColor = function () {
-        this.setLocalStorageItem('bgcolor', 'white');
-        console.log('Белый цвет сайта');
+        this.setLocalStorageItem('color', 'white');
     };
 
     WCAGPanelWithHandlers.prototype.setBlackColor = function () {
-        this.setLocalStorageItem('bgcolor', 'black');
-        console.log('Черный цвет сайта');
+        this.setLocalStorageItem('color', 'black');
     };
 
     WCAGPanelWithHandlers.prototype.setBlueColor = function () {
-        this.setLocalStorageItem('bgcolor', 'blue');
-        console.log('Голубой цвет сайта');
+        this.setLocalStorageItem('color', 'blue');
     };
 
 

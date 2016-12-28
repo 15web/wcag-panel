@@ -13,6 +13,8 @@
 
     box-sizing: border-box;
     z-index: 999;
+
+    color: #000;
 }
 
 .wcag-panel__wrapper {
@@ -101,7 +103,7 @@
 }
 
 /* active */
-.wcag-panel__switcher-btn.wcag-panel__switcher-btn_active {
+.wcag-panel__switcher-btn.active {
     background-color: black;
     color: white;
 }
@@ -324,7 +326,7 @@
     border-bottom: 1px solid black;
 }
 
-.flag-button_active:after, .flag-button:focus:after {
+.flag-button.active:after, .flag-button:focus:after {
     display: block;
 }
 
