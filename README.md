@@ -157,3 +157,12 @@ CSS:
 ## Примеры
 Обработка пользовательских действий и разработка функционала переключателей остается за пользователем библиотеки, т.к. этот функционал индивидуален для каждого сайта. В нашем репозитории выможете найти следующие примеры демонстрирующие интерграцию компонента :
    * Пример обработки действий пользователя (клик по переключателю) (https://github.com/15web/wcag-panel/tree/master/examples/handle-switcher-click)
+   
+## Copyright and license
+
+Copyright © 2016 [Studio 15](http://15web.ru)
+Code released under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
+
+We use [BrowserStack](https://www.browserstack.com/) for cross browser testing.
+
+![BrowserStack](https://github.com/15web/web-accessibility/raw/master/browserstack_logo.png)
